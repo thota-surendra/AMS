@@ -1,0 +1,42 @@
+<div class="container">
+    <header>
+      <h1>Update Flight</h1>
+      <button class="back-button" routerLink="/">Back to Home</button>
+    </header>
+  
+    <div class="content">
+      <form [formGroup]="flightForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="providerCode">Provider Code</label>
+          <input id="providerCode" formControlName="providerCode" required />
+          <p
+            style="color:red"
+            *ngIf="
+              flightForm.get('providerCode')?.touched &&
+              flightForm.get('providerCode')?.invalid
+            "
+          >
+            Please enter valid provider code, must have 3 characters
+          </p>
+        </div>
+        <div>
+          <label for="providerType">Provider Type</label>
+          <select id="providerType" formControlName="providerType" required>
+            <option value="Domestic">Domestic</option>
+            <option value="International">International</option>
+          </select>
+          <p
+            style="color:red"
+            *ngIf="
+              flightForm.get('providerType')?.touched &&
+              flightForm.get('providerType')?.invalid
+            "
+          >
+            Please select Provider Type
+          </p>
+        </div>
+        <button type="submit">Update Flight</button>
+      </form>
+    </div>
+  </div>
+  

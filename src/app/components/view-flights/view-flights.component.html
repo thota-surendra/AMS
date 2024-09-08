@@ -1,0 +1,31 @@
+<div class="container">
+    <header>
+      <h1>View Flights</h1>
+      <button class="back-button" routerLink="/">Back to Home</button>
+    </header>
+  
+    <div class="content">
+      <input
+        type="text"
+        placeholder="Filter By Provider Type"
+        (input)="onFilterChange($event)"
+      />
+      <table>
+        <thead>
+          <tr>
+            <th>Provider Code</th>
+            <th>Provider Name</th>
+            <th>Provider Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let airline of filteredAirlines">
+            <td>{{ airline.providerCode }}</td>
+            <td>{{ airline.providerName }}</td>
+            <td>{{ airline.providerType }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -1,0 +1,36 @@
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 8px;
+    width: 300px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  

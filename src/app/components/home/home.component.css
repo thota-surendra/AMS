@@ -1,0 +1,110 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header {
+    background-color: #0056b3;
+    padding: 20px 10px;
+    text-align: center;
+    color: white;
+    border-bottom: 4px solid #004099;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  nav {
+    margin-top: 10px;
+  }
+  
+  nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #ffdd57;
+  }
+  
+  .hero {
+    background-image: url('https://scontent.fhyd11-2.fna.fbcdn.net/v/t39.30808-6/451781124_1268284990995662_704959603926533815_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=85NC_xHq2MAQ7kNvgFqdw6L&_nc_ht=scontent.fhyd11-2.fna&_nc_gid=A1XBePkVf1Z0wTCLyFvTUyB&oh=00_AYDKh-KTnBdKgBYOvAkyR1SHYLdX3OTHhtQHrecTwQuOQA&oe=66DCE54E'); /* Replace with an actual airline image */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .hero-button {
+    background-color: #ffdd57;
+    color: #0056b3;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero-button:hover {
+    background-color: #ffd700;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    column-gap: 10px;
+  }
+  
+  .feature {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 23%;
+    text-align: center;
+  }
+  
+  .feature h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .feature p {
+    font-size: 16px;
+    color: #555;
+  }
+  
