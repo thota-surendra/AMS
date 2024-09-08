@@ -15,7 +15,7 @@ export class DeleteFlightComponent {
     private airlineService: AirlineService,
     private fb: FormBuilder,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.flightForm = this.fb.group({
@@ -31,15 +31,22 @@ export class DeleteFlightComponent {
     }
     const provideCode = this.flightForm.controls['providerCode'].value;
     const providerType = this.flightForm.controls['providerType'].value;
-    const airline = this.airlineService.getAirlineByCodeType(
+    this.airlineService.getAirlineByCodeType(
       provideCode,
       providerType
-    );
-    if (airline) {
-      this.airlineService.deleteAirline(airline.id);
-      this.router.navigate(['/']);
-    } else {
-      alert('Airline not found');
-    }
+    ).subscribe(airline => {
+      if (airline && airline.length > 0) {
+        this.airlineService.deleteAirline(airline[0].id).subscribe(x => {
+          this.airlineService.showSuccess('Flight deleted successfully!');
+          this.router.navigate(['/']);
+        }, err => {
+          this.airlineService.showError('Delete failed!');
+        });
+
+      } else {
+        this.airlineService.showError('Airline not found!');
+      }
+    })
+
   }
 }

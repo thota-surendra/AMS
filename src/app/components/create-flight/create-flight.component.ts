@@ -15,7 +15,7 @@ export class CreateFlightComponent implements OnInit {
     private fb: FormBuilder,
     private airlineService: AirlineService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.flightForm = this.fb.group({
@@ -34,14 +34,22 @@ export class CreateFlightComponent implements OnInit {
     if (this.flightForm.valid) {
       const newAirline: Airline = {
         ...this.flightForm.value,
-        id: 0,
+        id: Math.floor(Math.random() * 100000).toString(),
         providerCode: this.flightForm.controls['providerCode'].value,
         providerName: this.airlineService.getAirlineDataByCode(
           this.flightForm.controls['providerCode'].value
         )?.providerName,
       };
-      this.airlineService.addAirline(newAirline);
-      this.router.navigate(['/']);
+      this.airlineService.getAirlineByCodeType(newAirline.providerCode, newAirline.providerType).subscribe(flightExists => {
+        if (flightExists.length > 0) {
+          this.airlineService.showError('Given Flight details already exists!');
+        } else {
+          this.airlineService.addAirline(newAirline).subscribe(x => {
+            this.airlineService.showSuccess('Flight details added successfully!');
+            this.router.navigate(['/']);
+          });
+        }
+      });
     }
   }
 }

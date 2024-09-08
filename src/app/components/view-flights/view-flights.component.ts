@@ -13,8 +13,10 @@ export class ViewFlightsComponent implements OnInit {
   constructor(private airlineService: AirlineService) {}
 
   ngOnInit(): void {
-    this.airlines = this.airlineService.getAirlines();
-    this.filteredAirlines = this.airlines;
+     this.airlineService.getAirlines().subscribe(airlines=>{
+      this.airlines=airlines;
+      this.filteredAirlines = this.airlines;
+    }); 
   }
 
   onFilterChange(filter: any) {

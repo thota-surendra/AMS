@@ -15,7 +15,7 @@ export class UpdateFlightComponent implements OnInit {
     private fb: FormBuilder,
     private airlineService: AirlineService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.flightForm = this.fb.group({
@@ -30,16 +30,29 @@ export class UpdateFlightComponent implements OnInit {
       return;
     }
     const code = this.flightForm.get('providerCode')?.value;
-    const airline = this.airlineService.getAirlineByCode(code);
-    if (airline) {
-      const updatedAirline: Airline = {
-        ...airline,
-        providerType: this.flightForm.get('providerType')?.value,
-      };
-      this.airlineService.updateAirline(airline.id, updatedAirline);
-      this.router.navigate(['/']);
-    } else {
-      alert('Airline not found');
-    }
+    const type = this.flightForm.get('providerType')?.value;
+    this.airlineService.getAirlineByCodeType(code, type).subscribe(flightExists => {
+      if (flightExists.length > 0) {
+        this.airlineService.showError('Given Flight details already exists!');
+      } else {
+        this.airlineService.getAirlineByCode(code).subscribe(airlines => {
+          const airline = airlines[0];
+          if (airline) {
+            const updatedAirline: Airline = {
+              ...airline,
+              providerType: type,
+            };
+            this.airlineService.updateAirline(airline.id, updatedAirline).subscribe(x => {
+              this.airlineService.showSuccess('Flight details added successfully!');
+              this.router.navigate(['/']);
+            });
+          } else {
+            this.airlineService.showError('Given Flight details are not found!');
+          }
+        });
+      }
+    });
+
+
   }
 }

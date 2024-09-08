@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 export interface Airline {
   id: number;
@@ -11,7 +14,6 @@ export interface Airline {
   providedIn: 'root',
 })
 export class AirlineService {
-  private airlines: Airline[] = [];
   private airlinesData: Airline[] = [
     {
       id: 1,
@@ -44,36 +46,43 @@ export class AirlineService {
       providerType: 'Domestic',
     },
   ];
+  private apiUrl = 'http://localhost:3000/airlines'; // The db.json endpoint
 
-  getAirlines(): Airline[] {
-    return [...this.airlines];
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
+
+  getAirlines(): Observable<Airline[]> {
+    return this.http.get<Airline[]>(this.apiUrl);
   }
 
-  addAirline(airline: Airline) {
-    airline.id = this.airlines.length + 1;
-    this.airlines.push(airline);
+  addAirline(airline: Airline): Observable<Airline> {
+    return this.http.post<Airline>(this.apiUrl, airline);
   }
 
-  updateAirline(id: number, updatedAirline: Airline) {
-    const index = this.airlines.findIndex((a) => a.id === id);
-    if (index !== -1) {
-      this.airlines[index] = updatedAirline;
-    }
+  updateAirline(id: number, updatedAirline: Airline): Observable<Airline> {
+    return this.http.put<Airline>(`${this.apiUrl}/${id}`, updatedAirline);
   }
 
-  deleteAirline(id: number) {
-    this.airlines = this.airlines.filter((a) => a.id !== id);
+  deleteAirline(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  getAirlineByCode(providerCode: string): Observable<Airline[]> {
+    return this.http.get<Airline[]>(`${this.apiUrl}?providerCode=${providerCode}`);
+  }
+
+  getAirlineByCodeType(providerCode: string, providerType: string): Observable<Airline[]> {
+    return this.http.get<Airline[]>(`${this.apiUrl}?providerCode=${providerCode}&providerType=${providerType}`);
+  }
+
 
   getAirlineDataByCode(providerCode: string): Airline | undefined {
     return this.airlinesData.find((a) => a.providerCode === providerCode);
   }
 
-  getAirlineByCode(providerCode: string): Airline | undefined {
-    return this.airlines.find((a) => a.providerCode === providerCode);
+  showSuccess(message: string, title = 'success') {
+    this.toastr.success(message, title);
   }
-
-  getAirlineByCodeType(providerCode: string,providerType: string): Airline | undefined {
-    return this.airlines.find((a) => a.providerCode === providerCode && a.providerType==providerType);
+  showError(message: string, title = 'error') {
+    this.toastr.error(message, title);
   }
 }

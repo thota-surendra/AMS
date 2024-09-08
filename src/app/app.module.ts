@@ -9,14 +9,18 @@ import { ViewFlightsComponent } from './components/view-flights/view-flights.com
 import { UpdateFlightComponent } from './components/update-flight/update-flight.component';
 import { DeleteFlightComponent } from './components/delete-flight/delete-flight.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,

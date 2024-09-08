@@ -23,6 +23,7 @@ body {
     margin: 0;
     font-size: 32px;
     font-weight: bold;
+    color: white;
   }
   
   nav {
@@ -42,7 +43,7 @@ body {
   }
   
   .hero {
-    background-image: url('https://scontent.fhyd11-2.fna.fbcdn.net/v/t39.30808-6/451781124_1268284990995662_704959603926533815_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=85NC_xHq2MAQ7kNvgFqdw6L&_nc_ht=scontent.fhyd11-2.fna&_nc_gid=A1XBePkVf1Z0wTCLyFvTUyB&oh=00_AYDKh-KTnBdKgBYOvAkyR1SHYLdX3OTHhtQHrecTwQuOQA&oe=66DCE54E'); /* Replace with an actual airline image */
+    background-image: url('https://www.lwinsurance.co.uk/files/thumbs/travel-insurance-banner_w1683_h555.jpg'); 
     background-size: cover;
     background-position: center;
     color: white;
@@ -60,11 +61,13 @@ body {
   .hero h2 {
     font-size: 36px;
     margin-bottom: 20px;
+    color: #0056b3;
   }
   
   .hero p {
     font-size: 20px;
     margin-bottom: 30px;
+    color: #0056b3;
   }
   
   .hero-button {
